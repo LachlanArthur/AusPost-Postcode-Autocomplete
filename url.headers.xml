@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+	<meta>
+		<sampleQuery><![CDATA[select * from {table} where url="http://example.com/" and headers="foo=bar&test=Hello%20World"]]></sampleQuery>
+	</meta>
+	<bindings>
+	<select itemPath="" produces="XML">
+		<urls>
+			<url></url>
+		</urls>
+		<inputs>
+			<key id="url" type="xs:string" paramType="variable" required="true" />
+			<key id="headers" type="xs:string" paramType="variable" required="false" />
+		</inputs>
+			<execute><![CDATA[
+			var req = y.rest(url);
+			if (headers) {
+				var headers = headers.split('&');
+				for (var i = 0; i < headers.length; i++) {
+					var header = headers[i].split('=');
+					var key = decodeURIComponent(header[0]);
+					var val = decodeURIComponent(header[1]);
+					req.header(key, val);
+				}
+			}
+			response.object = req.get().response;
+			]]></execute>
+		</select>
+	</bindings>
+</table>
