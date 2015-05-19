@@ -27,3 +27,8 @@ List of data attributes:
 - `latitude`
 
 A `loading` class is added to the input when the query is executing, so you can apply some sort of visual change to indicate to the user that a request is being made.
+
+## Todo
+
+- Allow more overrides through the input args array (such as templates)
+- Some kind of dynamic state restriction
