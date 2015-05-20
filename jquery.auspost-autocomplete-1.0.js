@@ -46,7 +46,7 @@ jQuery.fn.ausPostAutocomplete = function(args) {
 					].join(' '),
 					format: 'json'
 				};
-				return 'https://query.yahooapis.com/v1/public/yql?' + $.param(yqlData);
+				return 'https://query.yahooapis.com/v1/public/yql?' + $.param(yqlData) + '&callback=?';
 				
 			})(),
 			wildcard: 'QUERY',
